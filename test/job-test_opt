@@ -1,0 +1,45 @@
+#!/bin/sh
+############################################################################## 
+# First we have some directives to the queueing system. Must be in 
+# the first block of comment lines. 
+#
+##PBS -q short
+##PBS -q largemem
+#PBS -l nodes=2:ppn=8
+#PBS -l walltime=10:00:00
+# 
+# Make sure that we are in the same subdirectory as where the qsub command 
+# is issued. 
+# 
+cd $PBS_O_WORKDIR 
+#
+#  Determine the nodes, num process, etc.
+#  cat $PBS_NODEFILE > nodes
+#  oddly,, this version puts all nodes on one line...
+#  mpirun wants separate lines though.
+while read machine
+do
+echo $machine
+done < $PBS_NODEFILE > nodes
+# Get number of nodes allocated
+NO_OF_NODES=`cat $PBS_NODEFILE | egrep -v '^#'\|'^$' | wc -l | awk '{print $1}'`
+NODE_LIST=`cat $PBS_NODEFILE`
+NUM_CORES=`cat $PBS_NODEFILE | wc -w`
+#
+# Our list of nodes...                      
+echo $NODE_LIST
+# 
+# 
+# Run the executable. *DO NOT PUT* a '&' at the end - it will not 
+# work. 
+#
+ulimit -s unlimited 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/openmpi/lib
+#VASP.5.3.3
+/opt/openmpi/bin/mpirun -np $NUM_CORES -machinefile nodes /home/jrbrgoch/bin/vasp533_openmpi-jakoah > out                                         
+#
+#VASP.4.6.36
+#/opt/openmpi/bin/mpirun -np $NUM_CORES -machinefile nodes /home/jrbrgoch/bin/vasp4636_openmpi > out                                         
+# End of script-file. 
+# 
+############################################################################### 

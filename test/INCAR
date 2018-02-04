@@ -1,0 +1,45 @@
+PREC=HIGH
+ENCUT=650
+NELM = 150
+NELMIN = 5
+EDIFF = 1E-5
+#NPAR=8
+#KPAR = 4
+#NCORE = 8
+#IALGO = 48
+#ALGO = FAST
+
+#DOS and band structure
+#RWIGS = 1.420 0.900 0.26 1.38
+#NEDOS=8001
+#LORBIT = 11
+#ISMEAR = -5
+#SIGMA = 0.1
+#ICHARG = 11
+
+#Structure Optimization
+ISIF = 3
+IBRION = 2 
+NSW = 75
+EDIFFG = -0.01
+MAXMIX = 80
+POTIM = 0.449
+#Hybrid
+#LHFCALC=.TRUE.
+#AEXX = 0.25
+#AGGAX = 0.75
+#ALGO = Damped
+#TIME = 0.2
+#PREFOCK = FAST
+#HFSCREEN = 0.2
+#NKREDX = 2 
+#NKREDY = 2 
+#NKREDZ = 2 
+
+#Stress Tensors
+#IBRION = 6
+#ISIF = 6
+#NSW = 1
+#NFREE = 2
+#ENCUT = 600
+#EDIFF = 1E-6

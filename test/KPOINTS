@@ -1,0 +1,4 @@
+Automatic mesh
+0              ! number of k-points = 0 ->automatic generation scheme 
+Gamma          ! generate a Gamma centered grid (or Monkhoarst-Pack)
+10 10 10         ! subdivisions N_1, N_2 and N_3 along recipr. l. vectors
